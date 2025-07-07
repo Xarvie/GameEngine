@@ -15,6 +15,8 @@ foreach(lib_dir ${LIB_DIRS})
     endif()
 endforeach()
 
+# 将当前目录添加到模块搜索路径，方便后续 include
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 SET(DEFINITIONS "")
 ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
@@ -150,58 +152,43 @@ endif()
 if(CC_MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDebug")
 endif()
-# 将当前目录添加到模块搜索路径，方便后续 include
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
 
 
 set(BUILD_SHARED_LIBS OFF)
 
 set(OZZ_BUILD_TESTS OFF CACHE BOOL "Disable Ozz tests")
-set(OZZ_BUILD_TOOLS OFF CACHE BOOL "Disable Ozz tools")
+
 add_subdirectory(libs/ozz-animation)
-
-
-list(APPEND ENGINE_SOURCES ${SOKOL_IMPLEMENTATION_FILE})
+add_subdirectory(libs/glm)
 
 if(NOT WEB)
     find_package(SDL2 REQUIRED)
 endif()
 set(SRC ${ENGINE_SOURCES}
-        src/application.h
-        src/application.cc
-        src/imgui.h
-        src/image.h
-        src/image.cc
-        src/mesh.h
-        src/mesh.cc
-        src/motion_utils.h
-        src/motion_utils.cc
-        src/profile.h
-        src/profile.cc
-        src/renderer.h
-        src/utils.h
-        src/utils.cc
-        src/internal/camera.h
-        src/internal/camera.cc
-        src/internal/icosphere.h
-        src/internal/immediate.h
-        src/internal/immediate.cc
-        src/internal/imgui_impl.h
-        src/internal/imgui_impl.cc
-        src/internal/renderer_impl.h
-        src/internal/renderer_impl.cc
-        src/internal/shader.h
-        src/internal/shader.cc
-        src/internal/shooter.h
-        src/internal/shooter.cc
-        src/sample_skinning.cc
-        src/animation_instance.cpp
-        src/batch_animation_system.cpp
-        src/batch_animation_system.h
-        src/render_material.cc
+#        src/application.h
+#        src/application.cpp
+#        src/renderer.h
+#        src/utils.h
+#        src/utils.cpp
+#        src/camera.h
+#        src/camera.cpp
+#        src/renderer_impl.h
+#        src/renderer_impl.cpp
+#        src/shader.h
+#        src/shader.cpp
+#        src/main.cpp
+#        src/batch_animation_system.h
+#        src/render_material.cpp
+#        src/immediate.cpp
 
-        src/fbx_tools.cc
-        #        src/gltf2Mesh.cpp
+        src/mesh.h
+        src/mesh.cpp
+        src/gltf_tools.cpp
+        src/gltf_tools.h
+        src/render_material.cpp
+        src/main_test.cpp
+
 )
 
 if(NOT WEB)
@@ -211,6 +198,8 @@ endif()
 add_executable(Spartan ${SRC}
    )
 target_compile_definitions(Spartan PUBLIC ${DEFINITIONS})
+
+target_include_directories(Spartan PUBLIC libs/glm/ libs/tiny_gltf)
 
 if(CC_MSVC)
     target_include_directories(Spartan PUBLIC
@@ -237,9 +226,10 @@ target_link_libraries(Spartan PUBLIC
         ozz_base
         ozz_options
         ozz_geometry
+#        ozz_animation_fbx
         ozz_animation_offline
 
-        libfbxsdk-mt.lib alembic-mt.lib libxml2-mt.lib zlib-mt.lib
+
 )
 
 if(EMSCRIPTEN)
