@@ -1,0 +1,294 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "src/animation/offline/gltf/gltf2ozz.exe"
+		},
+		{
+			"path" : "src/animation/offline/gltf/gltf2ozz.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"install",
+			"target_link_libraries",
+			"add_compile_options",
+			"include",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"src/animation/offline/gltf/CMakeLists.txt",
+			"src/animation/offline/tools/CMakeLists.txt",
+			"src/animation/offline/CMakeLists.txt",
+			"src/options/CMakeLists.txt",
+			"build-utils/cmake/compiler_settings.cmake",
+			"CMakeLists.txt",
+			"src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 22,
+				"parent" : 4
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 34,
+				"parent" : 6
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 5,
+				"parent" : 8
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 5,
+				"line" : 40,
+				"parent" : 10
+			},
+			{
+				"file" : 4,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 74,
+				"parent" : 12
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 86,
+				"parent" : 12
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 93,
+				"parent" : 12
+			},
+			{
+				"file" : 6
+			},
+			{
+				"command" : 5,
+				"file" : 6,
+				"line" : 2,
+				"parent" : 16
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=c++17 -fansi-escape-codes -fcolor-diagnostics"
+				},
+				{
+					"backtrace" : 13,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 14,
+					"fragment" : "-Wno-ignored-attributes"
+				},
+				{
+					"backtrace" : 15,
+					"fragment" : "-Wno-c++98-compat-pedantic"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 17,
+					"path" : "C:/Users/ftp/Desktop/GameEngine/libs/ozz/src/."
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/ftp/Desktop/GameEngine/libs/ozz/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/ftp/Desktop/GameEngine/libs/ozz/extern/jsoncpp/dist"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "ozz_base::@da17c8cd1000ca7e4b79"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "ozz_options::@11e1f08b24ffdc7d91e0"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "ozz_animation::@0dc39a0a58225c8b67aa"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "ozz_animation_offline::@811de3f6425e3ac32458"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "ozz_animation_tools::@1481d002e86688d90687"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "json::@44a001c68711446e8b3d"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "ozz/tools"
+	},
+	"id" : "gltf2ozz::@d0dc6e20cce9e47ee351",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "bin/tools"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/ozz"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "src\\animation\\offline\\tools\\libozz_animation_tools_d.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "src\\animation\\offline\\libozz_animation_offline_d.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "src\\animation\\runtime\\libozz_animation_d.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "src\\options\\libozz_options_d.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "src\\base\\libozz_base_d.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "src\\animation\\offline\\tools\\json\\libjson_d.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "gltf2ozz",
+	"nameOnDisk" : "gltf2ozz.exe",
+	"paths" : 
+	{
+		"build" : "src/animation/offline/gltf",
+		"source" : "src/animation/offline/gltf"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/animation/offline/gltf/gltf2ozz.cc",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

@@ -165,42 +165,39 @@ add_subdirectory(libs/glm)
 if(NOT WEB)
     find_package(SDL2 REQUIRED)
 endif()
-set(SRC ${ENGINE_SOURCES}
-#        src/application.h
-#        src/application.cpp
-#        src/renderer.h
-#        src/utils.h
-#        src/utils.cpp
-#        src/camera.h
-#        src/camera.cpp
-#        src/renderer_impl.h
-#        src/renderer_impl.cpp
-#        src/shader.h
-#        src/shader.cpp
-#        src/main.cpp
-#        src/batch_animation_system.h
-#        src/render_material.cpp
-#        src/immediate.cpp
-
-        src/mesh.h
-        src/mesh.cpp
-        src/gltf_tools.cpp
-        src/gltf_tools.h
-        src/render_material.cpp
-        src/main_test.cpp
-
+if(NOT WEB)
+    set(SRC ${SRC} libs/glad/glad/glad.c
+    )
+endif()
+set(SRC ${SRC}  ${ENGINE_SOURCES}
+        src/GltfTools/GltfTools.cpp
+        src/GltfTools/AssetSerializer.cpp
+        src/GltfTools/GltfToolsAnimation.cpp
+        src/SimpleApp.cpp
+        src/RenderPipeline.cpp
+        src/Renderer.cpp
+        src/RenderDevice.cpp
+        src/Components.cpp
+        src/Systems.cpp
+        src/RenderWorld.cpp
+        src/AnimationTask.cpp
 )
 
-if(NOT WEB)
-    set(SRC ${SRC} libs/glad/glad/glad.c)
-endif()
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fno-omit-frame-pointer")
 
 add_executable(Spartan ${SRC}
-   )
+)
+target_include_directories(Spartan PUBLIC src/v3/)
 target_compile_definitions(Spartan PUBLIC ${DEFINITIONS})
-
-target_include_directories(Spartan PUBLIC libs/glm/ libs/tiny_gltf)
-
+if (MSVC)
+    target_compile_options(Spartan PRIVATE /RTC1 /GS /sdl)
+else ()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-literal-operator")
+endif()
+target_include_directories(Spartan PUBLIC libs/glm/ libs/tiny_gltf libs/entt-3.13.2/single_include)
+#target_compile_options(Spartan PRIVATE -fsanitize=address)
+#target_link_options(Spartan PRIVATE -fsanitize=address)
 if(CC_MSVC)
     target_include_directories(Spartan PUBLIC
             C:/dev_msvc_2022/FBX_SDK_2020.3.7/include
@@ -213,6 +210,7 @@ target_include_directories(Spartan PUBLIC
         libs/ozz-animation/include
         libs/glad
 )
+
 set(SDL "")
 if(NOT WEB)
     set(SDL SDL2::SDL2 SDL2::SDL2main)
@@ -226,7 +224,7 @@ target_link_libraries(Spartan PUBLIC
         ozz_base
         ozz_options
         ozz_geometry
-#        ozz_animation_fbx
+        #        ozz_animation_fbx
         ozz_animation_offline
 
 
